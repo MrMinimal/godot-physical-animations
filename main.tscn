@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c15uxcwoxdokm"]
+[gd_scene load_steps=11 format=3 uid="uid://c15uxcwoxdokm"]
 
 [ext_resource type="PackedScene" uid="uid://dmqwwcg1wsh5b" path="res://character/tank.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://tqn4ui8vorjr" path="res://bone_testing/lever.tscn" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -54,7 +55,7 @@ mesh = SubResource("BoxMesh_7dm0k")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.56066895, -0.5171375, 0.64669865, 0, 0.78099924, 0.624532, -0.8280401, -0.35015568, 0.43788198, 3.9768538, 6.691014, 1.7617997)
+transform = Transform3D(0.24787208, -0.37304947, 0.89408815, 0, 0.92288893, 0.3850663, -0.9687928, -0.09544719, 0.2287584, 5.9636383, 4.4114747, 4.6018167)
 
 [node name="Box" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1532164, 0.98036087, 1.8693893)
@@ -65,3 +66,6 @@ shape = SubResource("BoxShape3D_ig7tw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/CollisionShape3D"]
 mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="lever" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2234058, 2.5971527, 2.0078921)
