@@ -42,7 +42,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="tank" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0978708, -1.1716156, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0978708, 0.6200776, 0)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 metadata/_edit_lock_ = true
@@ -55,7 +55,7 @@ mesh = SubResource("BoxMesh_7dm0k")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.64080966, -0.3651121, 0.6753193, 0, 0.8796659, 0.47559226, -0.76769984, -0.30476412, 0.56369835, 4.6640277, 5.4915276, 2.7403598)
+transform = Transform3D(0.56066895, -0.5171375, 0.64669865, 0, 0.78099924, 0.624532, -0.8280401, -0.35015568, 0.43788198, 3.9768538, 6.691014, 1.7617997)
 
 [node name="Box" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1532164, 0.98036087, 1.8693893)
@@ -68,4 +68,4 @@ shape = SubResource("BoxShape3D_ig7tw")
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="turret_test" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(0.38963842, 0.92096794, 0, -0.92096794, 0.38963842, 0, 0, 0, 1, -1.9232969, 5.981595, 0.052703977)
+transform = Transform3D(0.38963842, 0.92096794, 0, -0.92096794, 0.38963842, 0, 0, 0, 1, 1.9467204, 6.1698756, -3.0535283)
