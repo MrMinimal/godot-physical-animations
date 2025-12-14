@@ -20,6 +20,7 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -0.6110894)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6110894)
 body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.6110894, 0)
 mass = 10.0
+can_sleep = false
 bone_name = "Base"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Base" index="0"]
@@ -30,6 +31,7 @@ shape = SubResource("BoxShape3D_sjofl")
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 1.6499999)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6499999)
 body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.6499999, 0)
+can_sleep = false
 bone_name = "Arm"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Arm" index="0"]
@@ -41,6 +43,7 @@ node_a = NodePath("../Physical Bone Base")
 node_b = NodePath("../Physical Bone Arm")
 linear_motor_x/target_velocity = 5.0
 linear_motor_x/force_limit = 1000.0
-angular_limit_x/enabled = false
+angular_limit_x/upper_angle = 1.5707964
 angular_motor_x/enabled = true
-angular_motor_x/target_velocity = 0.34906584
+angular_motor_x/target_velocity = 52.35988
+angular_motor_x/force_limit = 16.0
