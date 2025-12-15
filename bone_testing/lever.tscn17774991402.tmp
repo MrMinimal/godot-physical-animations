@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://tqn4ui8vorjr"]
+[gd_scene load_steps=6 format=3 uid="uid://tqn4ui8vorjr"]
 
 [ext_resource type="PackedScene" uid="uid://bjap1w5wggcac" path="res://bone_testing/lever.blend" id="1_sjofl"]
 [ext_resource type="Script" uid="uid://b82c31gj0wtdp" path="res://bone_testing/physical_bone_simulator_3d.gd" id="2_8rgme"]
@@ -7,29 +7,37 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_sjofl"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rgme"]
+radius = 0.32999998
+height = 3.3
+
 [node name="lever" instance=ExtResource("1_sjofl")]
 
 [node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Armature/Skeleton3D" index="1"]
 script = ExtResource("2_8rgme")
 
 [node name="Physical Bone Base" type="PhysicalBone3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.6110894)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3423133e-08, 0, 0.6110894)
-body_offset = Transform3D(1, 0, -8.742278e-08, -8.742278e-08, 0, -1, 0, 1, 0, 0, 0.6110894, 0)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -0.6110894)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6110894)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.6110894, 0)
 mass = 10.0
 can_sleep = false
 bone_name = "Base"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Base" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.60810566)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.60810566)
 shape = SubResource("BoxShape3D_sjofl")
 
 [node name="Physical Bone Arm" type="PhysicalBone3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6499999)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6499999)
-body_offset = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1.6499999, 0)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 1.6499999)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6499999)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1.6499999, 0)
 can_sleep = false
 bone_name = "Arm"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Arm" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_8rgme")
 
 [node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="2"]
 node_a = NodePath("../Physical Bone Base")

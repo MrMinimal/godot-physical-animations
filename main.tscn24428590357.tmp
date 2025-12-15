@@ -35,13 +35,8 @@ size = Vector3(2, 2, 2)
 [sub_resource type="GDScript" id="GDScript_0xm2m"]
 script/source = "extends Node3D
 
-@onready var ref: Node3D = $\"../TransformReference\"
-
 func _ready() -> void:
 	print(self.transform.basis.get_euler())
-	
-	var test = ref.transform.affine_inverse() * self.transform
-	print(test.basis.get_euler())
 "
 
 [node name="Node3D" type="Node3D"]
@@ -80,11 +75,8 @@ shape = SubResource("BoxShape3D_ig7tw")
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="lever" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+transform = Transform3D(0.66271156, 0, 0.7488748, 0, 1, 0, -0.7488748, 0, 0.66271156, 0, 0, 0)
 
 [node name="TransformTesting" type="Node3D" parent="."]
 transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 0, 0, 0)
 script = SubResource("GDScript_0xm2m")
-
-[node name="TransformReference" type="Node3D" parent="."]
-transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 1.906205, 0, -1.8934054)
