@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://tqn4ui8vorjr"]
+[gd_scene load_steps=6 format=3 uid="uid://tqn4ui8vorjr"]
 
 [ext_resource type="PackedScene" uid="uid://bjap1w5wggcac" path="res://bone_testing/lever.blend" id="1_sjofl"]
 [ext_resource type="Script" uid="uid://b82c31gj0wtdp" path="res://bone_testing/physical_bone_simulator_3d.gd" id="2_8rgme"]
@@ -7,21 +7,23 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_sjofl"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="PrismMesh" id="PrismMesh_vyr44"]
+
 [node name="lever" instance=ExtResource("1_sjofl")]
 
 [node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Armature/Skeleton3D" index="1"]
 script = ExtResource("2_8rgme")
 
 [node name="Physical Bone Base" type="PhysicalBone3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.6110894)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3423133e-08, 0, 0.6110894)
-body_offset = Transform3D(1, 0, -8.742278e-08, -8.742278e-08, 0, -1, 0, 1, 0, 0, 0.6110894, 0)
-mass = 10.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6110894)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6110894)
+body_offset = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0.6110894, 0)
+mass = 100.0
 can_sleep = false
 bone_name = "Base"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Base" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.60810566)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.61255527)
 shape = SubResource("BoxShape3D_sjofl")
 
 [node name="Physical Bone Arm" type="PhysicalBone3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
@@ -37,10 +39,20 @@ node_b = NodePath("../Physical Bone Arm")
 linear_motor_x/target_velocity = 5.0
 linear_motor_x/force_limit = 1000.0
 angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
 angular_motor_x/enabled = true
 angular_motor_x/force_limit = 1000.0
+angular_motor_y/enabled = true
+angular_motor_y/force_limit = 1000.0
+angular_motor_z/enabled = true
+angular_motor_z/force_limit = 1000.0
 script = ExtResource("3_vyr44")
 
-[node name="Marker3D" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.072245955, 0.9973868, 0, -0.9973868, 0.072245955, 0, 0, 0)
+[node name="Marker3D" type="Marker3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Generic6DOFJoint3D" index="0"]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.80213034, 0.5971492, 0, -0.59714925, 0.8021301, 0, 0, 0)
 gizmo_extents = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Generic6DOFJoint3D/Marker3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_vyr44")

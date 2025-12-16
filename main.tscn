@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c15uxcwoxdokm"]
+[gd_scene load_steps=13 format=3 uid="uid://c15uxcwoxdokm"]
 
 [ext_resource type="PackedScene" uid="uid://dmqwwcg1wsh5b" path="res://character/tank.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://tqn4ui8vorjr" path="res://bone_testing/lever.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cgs2gbg2mfwd3" path="res://target_joint/orientations.tscn" id="3_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -67,7 +68,7 @@ mesh = SubResource("BoxMesh_7dm0k")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.24787208, -0.37304947, 0.89408815, 0, 0.92288893, 0.3850663, -0.9687928, -0.09544719, 0.2287584, 5.9636383, 4.4114747, 4.6018167)
+transform = Transform3D(-0.011345957, 0.019235907, 0.9997506, 0, 0.9998149, -0.019237146, -0.9999356, -0.00021826384, -0.011343858, 7.658941, 3.8456635, -5.0023)
 
 [node name="Box" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1532164, 0.98036087, -4.953432)
@@ -80,7 +81,7 @@ shape = SubResource("BoxShape3D_ig7tw")
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="lever" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9768369, 0.21398526, 0, -0.21398526, 0.9768369, 1.8093791, 2.7470293, -5.205826)
 
 [node name="TransformTesting" type="Node3D" parent="."]
 transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 0, 0, 0)
@@ -88,3 +89,5 @@ script = SubResource("GDScript_0xm2m")
 
 [node name="TransformReference" type="Node3D" parent="."]
 transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 1.906205, 0, -1.8934054)
+
+[node name="orientations" parent="." instance=ExtResource("3_h2yge")]

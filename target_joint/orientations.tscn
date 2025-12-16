@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgs2gbg2mfwd3"]
+
+[ext_resource type="PackedScene" uid="uid://dlguty6khnaq4" path="res://target_joint/orientations.blend" id="1_sscc7"]
+[ext_resource type="Script" uid="uid://b82c31gj0wtdp" path="res://bone_testing/physical_bone_simulator_3d.gd" id="2_ci8ub"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ci8ub"]
+height = 1.6791992
+radius = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci8ub"]
+radius = 0.2
+
+[node name="orientations" instance=ExtResource("1_sscc7")]
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Armature/Skeleton3D" index="1"]
+script = ExtResource("2_ci8ub")
+
+[node name="Physical Bone Base" type="PhysicalBone3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+body_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+can_sleep = false
+bone_name = "Base"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Base" index="0"]
+shape = SubResource("CylinderShape3D_ci8ub")
+
+[node name="Physical Bone Head" type="PhysicalBone3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 3, 0)
+joint_type = 1
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+body_offset = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1, 0)
+can_sleep = false
+bone_name = "Head"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ci8ub")
