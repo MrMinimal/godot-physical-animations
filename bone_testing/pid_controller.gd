@@ -1,7 +1,10 @@
 extends Generic6DOFJoint3D
 @onready var marker_3d: Marker3D = $Marker3D
 
-const P_GAIN = 1
+const P_GAIN = 1000
+const D_GAIN = 1
+
+var errorLast = 0
 
 func _physics_process(delta: float) -> void:
 	# Convert basis to quaternion, keep in mind scale is lost
@@ -16,11 +19,17 @@ func _physics_process(delta: float) -> void:
 		rad_to_deg(error.get_euler().y),
 		rad_to_deg(error.get_euler().z),
 	)
-	print(output)
+	#print(output)
 
 	var P = P_GAIN * error.x
+	
+	var errorRateOfChange = (error.x - errorLast)
+	errorLast = error.x
+	var D = D_GAIN * errorRateOfChange
 
-	if error.x > 0:
+	if P > 0:
 		set("angular_motor_x/target_velocity", 2000)
 	else:
 		set("angular_motor_x/target_velocity", -2000)
+	set("angular_motor_x/force_limit", abs(P))
+	print(P)

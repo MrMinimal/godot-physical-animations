@@ -81,7 +81,7 @@ shape = SubResource("BoxShape3D_ig7tw")
 mesh = SubResource("BoxMesh_0xm2m")
 
 [node name="lever" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8093791, 1.9972589, -5.205826)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, -4.3711385e-08, 0, 4.3711385e-08, 0.99999994, 1.8093791, 2.0310307, -4.990509)
 
 [node name="TransformTesting" type="Node3D" parent="."]
 transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 0, 0, 0)
