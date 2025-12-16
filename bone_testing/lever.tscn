@@ -42,11 +42,11 @@ angular_limit_x/enabled = false
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 angular_motor_x/enabled = true
-angular_motor_x/force_limit = 1000.0
+angular_motor_x/force_limit = 200.0
 angular_motor_y/enabled = true
-angular_motor_y/force_limit = 1000.0
+angular_motor_y/force_limit = 200.0
 angular_motor_z/enabled = true
-angular_motor_z/force_limit = 1000.0
+angular_motor_z/force_limit = 200.0
 script = ExtResource("3_vyr44")
 
 [node name="Marker3D" type="Marker3D" parent="Armature/Skeleton3D/PhysicalBoneSimulator3D/Generic6DOFJoint3D" index="0"]

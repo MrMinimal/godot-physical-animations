@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://c15uxcwoxdokm"]
+
+[ext_resource type="PackedScene" uid="uid://dmqwwcg1wsh5b" path="res://character/tank.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://tqn4ui8vorjr" path="res://bone_testing/lever.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cgs2gbg2mfwd3" path="res://target_joint/orientations.tscn" id="3_h2yge"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+albedo_color = Color(0.06, 0.06, 0.06, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+material = SubResource("StandardMaterial3D_7dm0k")
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="GDScript" id="GDScript_0xm2m"]
+script/source = "extends Node3D
+
+@onready var ref: Node3D = $\"../TransformReference\"
+
+func _ready() -> void:
+	print(self.transform.basis.get_euler())
+	
+	var test = ref.transform.affine_inverse() * self.transform
+	print(test.basis.get_euler())
+"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="tank" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.528845, 0.6200776, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_7dm0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.011345957, 0.019235907, 0.9997506, 0, 0.9998149, -0.019237146, -0.9999356, -0.00021826384, -0.011343858, 7.658941, 3.8456635, -5.0023)
+
+[node name="Box" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1532164, 0.98036087, -4.953432)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/CollisionShape3D"]
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="lever" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8093791, 1.9972589, -5.205826)
+
+[node name="TransformTesting" type="Node3D" parent="."]
+transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 0, 0, 0)
+script = SubResource("GDScript_0xm2m")
+
+[node name="TransformReference" type="Node3D" parent="."]
+transform = Transform3D(0.6670007, 0, 0.74505705, 0, 1, 0, -0.74505705, 0, 0.6670007, 1.906205, 0, -1.8934054)
+
+[node name="orientations" parent="." instance=ExtResource("3_h2yge")]
