@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3vklbsfguqqy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tsh23"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_apeq2"]
+sky_material = SubResource("ProceduralSkyMaterial_tsh23")
+
+[sub_resource type="Environment" id="Environment_1c3b8"]
+background_mode = 2
+sky = SubResource("Sky_apeq2")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_tsh23"]
+resource_name = "test"
+script/source = "extends Node3D
+
+@onready var node_2: Node3D = $\"../Node2\"
+
+
+func _ready() -> void:
+	# Convert basis to quaternion, keep in mind scale is lost
+	var a = Quaternion(self.transform.basis)
+	var b = Quaternion(node_2.transform.basis)
+	# Interpolate using spherical-linear interpolation (SLERP).
+	var c = a.slerp(b, 0.2)
+	var delta = b * a.inverse()
+	print(delta.get_euler()) # in radians
+
+	# Apply back
+	self.transform.basis = Basis(delta)
+"
+
+[sub_resource type="PrismMesh" id="PrismMesh_tsh23"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_apeq2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1c3b8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Node1" type="Node3D" parent="."]
+script = SubResource("GDScript_tsh23")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node1"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_tsh23")
+
+[node name="Node2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8108392, 0.58526903, 0, -0.58526903, 0.8108392, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_apeq2")
+skeleton = NodePath("../../Node1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.5678742, -0.34327254, 0.7481196, 0, 0.90888786, 0.41704062, -0.82311535, -0.23682661, 0.516134, 1.3899654, 0.7748388, 0.95894885)

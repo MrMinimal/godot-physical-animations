@@ -42,5 +42,5 @@ angular_motor_x/force_limit = 1000.0
 script = ExtResource("3_vyr44")
 
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.072245955, 0.9973868, 0, -0.9973868, 0.072245955, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.832583, 0.55390024, 0, -0.55390024, 0.832583, 0, 1.9510723, 2.2837825)
 gizmo_extents = 2.0
