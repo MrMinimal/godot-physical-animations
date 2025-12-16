@@ -17,6 +17,6 @@ func _physics_process(delta: float) -> void:
 	print(output)
 
 	if offset.x > 0:
-		set("angular_motor_x/target_velocity", 1)
+		set("angular_motor_x/target_velocity", 2)
 	else:
-		set("angular_motor_x/target_velocity", -1)
+		set("angular_motor_x/target_velocity", -2)
