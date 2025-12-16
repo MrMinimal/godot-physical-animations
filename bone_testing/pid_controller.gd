@@ -2,7 +2,7 @@ extends Generic6DOFJoint3D
 @onready var marker_3d: Marker3D = $Marker3D
 
 const P_GAIN = 1000
-const D_GAIN = 1
+const D_GAIN = 5000
 
 var errorLast = 0
 
@@ -31,5 +31,5 @@ func _physics_process(delta: float) -> void:
 		set("angular_motor_x/target_velocity", 2000)
 	else:
 		set("angular_motor_x/target_velocity", -2000)
-	set("angular_motor_x/force_limit", abs(P))
+	set("angular_motor_x/force_limit", abs(P + D))
 	print(P)
