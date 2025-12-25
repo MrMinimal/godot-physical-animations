@@ -12,6 +12,6 @@ var selected: int
 var controller = PidController.new()
 
 func _physics_process(delta: float) -> void:
-	var out = controller.update(delta, self.position.x, targets[selected].position.x)
+	var out = controller.update(delta, self.position.y, targets[selected].position.y)
 	
-	apply_force(Vector3(out * MAX_FORCE, 0, 0))
+	apply_force(Vector3(0, out * MAX_FORCE, 0))

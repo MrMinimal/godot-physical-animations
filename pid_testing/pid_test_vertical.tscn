@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkjtso0eblolr"]
+[gd_scene load_steps=8 format=3 uid="uid://dli0y26x0cnk5"]
 
-[ext_resource type="Script" uid="uid://bb2kcr2kxfevb" path="res://pid_testing/craft.gd" id="1_x23g2"]
+[ext_resource type="Script" uid="uid://bb2kcr2kxfevb" path="res://pid_testing/craft.gd" id="1_rhh4s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2u5ng"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,30 +38,30 @@ mesh = SubResource("BoxMesh_2u5ng")
 [node name="Targets" type="Node3D" parent="."]
 
 [node name="Target0" type="MeshInstance3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 0)
-mesh = SubResource("BoxMesh_x23g2")
-
-[node name="Target1" type="MeshInstance3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
-mesh = SubResource("BoxMesh_x23g2")
-
-[node name="Target2" type="MeshInstance3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("BoxMesh_x23g2")
-
-[node name="Target3" type="MeshInstance3D" parent="Targets"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
 mesh = SubResource("BoxMesh_x23g2")
 
+[node name="Target1" type="MeshInstance3D" parent="Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 0)
+mesh = SubResource("BoxMesh_x23g2")
+
+[node name="Target2" type="MeshInstance3D" parent="Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 0)
+mesh = SubResource("BoxMesh_x23g2")
+
+[node name="Target3" type="MeshInstance3D" parent="Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 0)
+mesh = SubResource("BoxMesh_x23g2")
+
 [node name="Target4" type="MeshInstance3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 8.5, 0)
 mesh = SubResource("BoxMesh_x23g2")
 
 [node name="Craft" type="RigidBody3D" parent="." node_paths=PackedStringArray("targets")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 gravity_scale = 0.0
 can_sleep = false
-script = ExtResource("1_x23g2")
+script = ExtResource("1_rhh4s")
 targets = [NodePath("../Targets/Target0"), NodePath("../Targets/Target1"), NodePath("../Targets/Target2"), NodePath("../Targets/Target3"), NodePath("../Targets/Target4")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Craft"]
@@ -69,4 +69,4 @@ mesh = SubResource("BoxMesh_ig076")
 skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0080137, 4.7707357)
+transform = Transform3D(0.999815, 0.0047827517, -0.018630447, 0, 0.96859235, 0.24865411, 0.019234557, -0.24860811, 0.9684132, 0.8603111, 7.2186503, 8.519796)

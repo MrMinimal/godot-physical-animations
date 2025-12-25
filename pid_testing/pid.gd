@@ -14,7 +14,7 @@ var derivativeGain: float = .3
 
 var outputMin: float = -1
 var outputMax: float = 1
-var integralSaturation: float
+var integralSaturation: float = 1.0
 var derivativeMeasurement: DerivativeMeasurement = DerivativeMeasurement.Velocity
 
 var valueLast: float
